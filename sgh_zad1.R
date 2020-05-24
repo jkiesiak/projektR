@@ -1,6 +1,6 @@
 # http://michal.ramsza.org/lectures/2_r_programming/proj1/project_1.html?fbclid=IwAR0jp8_LMkcMEncwVigsPAq47b4vko-J2Mzas4mLJS5DtfsL3w0ZZB4XPgo
 
-setwd("C:/Users/Asia/Downloads/zad_R")
+setwd("C:/Users/Asia/Documents/zad_R")
 
 f = "graph_medium.dat"
 h = c("delete","node", "connections")
