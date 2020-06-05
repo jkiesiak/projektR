@@ -11,7 +11,7 @@ f2 <- function( x){
     sqrt( abs( x[2] * x[1]))
   )
 }
-
+f3(c(1,1))
 f3 <- function( x){
   c(
     sqrt( 1/2 + x[1]^2) + rnorm( 2, 0, 1/10),
@@ -64,9 +64,20 @@ plot(o$x, o$y, type="l")
 check2 = createPath( f2, c( 1, 1), 100)
 plot(check2$x, check2$y, type="l")
 
-check3 = createPath( f3, c( 1, 1), 300)####### wtf?!
+check3 = createPath( f3, c( 1, 1), 300)####### return 3 element of vector
 plot(check3$x, check3$y, type="l")
 
 
 check4 = createPath( f4, c( 1, 0), 1000)
 plot(check4$x, check4$y, type="l")
+
+
+
+
+
+
+
+
+
+
+
