@@ -30,6 +30,11 @@ f4 <- function( x){
   r * rnorm( 1, 1, 1/50)  * c( cos( nphi), sin( nphi))
 }
 ##############
+
+
+
+
+
 createPath <- function(f1, x, iter){
   
   list_of_points = list()
@@ -42,17 +47,17 @@ createPath <- function(f1, x, iter){
     x = temp
   }
   
-  rownames = 1:iter
+  rownames = seq(1, iter, by = 1)  
   colnames = c("x", "y")
   d = list(rownames, colnames)
-  list_of_points = data.frame(matrix(unlist(list_of_points), ncol = 2, byrow = TRUE,dimnames = d),stringsAsFactors=FALSE)
+  listt = data.frame(matrix(unlist(list_of_points), ncol = 2, byrow = TRUE,dimnames = list(rownames, colnames)),stringsAsFactors=FALSE)
   
-  return(list_of_points)
+  return(listt)
 }
 
 
 x = c(1, 1)
-o = createPath(f1, x, 20)
+o = createPath(f1, c( 1, 1), 20)
 plot(o$x, o$y, type="l")
 
 
