@@ -2,30 +2,37 @@
 
 setwd("C:/Users/Asia/Documents/zad_R")
 
-f = "graph_medium.dat"
-h = c("delete","node", "connections")
-graph = read.delim(file = f, header = FALSE, sep = "{", col.names = h, colClasses = NA, stringsAsFactors=FALSE)
+file = "graph_medium.dat"
 
-drops <- c("delete")
-graph = graph[ , !(names(graph) %in% drops)]
+readInGraph <- function(f)
+{
+  
+  h = c("delete","node", "connections")
+  graph = read.delim(file = f, header = FALSE, sep = "{", col.names = h, colClasses = NA, stringsAsFactors=FALSE)
 
-graph
-#graph$node = as.numeric(gsub("[^[:digit:]]","", graph$node ))
-graph$node = strsplit(graph$node, ", ")
-graph$connections[] = gsub("[^[:digit:]+,]","", graph$connections[] )
-graph$connections = strsplit(graph$connections, ",") # tu powstaje list of 10
-
-#character to number
-graph$node = lapply(graph$node, as.numeric)
-graph$connections = lapply(graph$connections, as.numeric)
-
+  drops <- c("delete")
+  graph = graph[ , !(names(graph) %in% drops)]
+  
+  graph$node = strsplit(graph$node, ", ")
+  graph$connections[] = gsub("[^[:digit:]+,]","", graph$connections[] )
+  graph$connections = strsplit(graph$connections, ",") # tu powstaje list of 10
+  
+  #character to number
+  graph$node = lapply(graph$node, as.numeric)
+  graph$connections = lapply(graph$connections, as.numeric)
+  
+  P=0
+  for(i in 1:length(graph$node)){
+    P[i] = list(c(node = graph$node[i], connections = graph$connections[i]))
+    i = i + 1
+  }
+  
+  return(P)
+}
+z = readInGraph(file)
+plot(z)
 
 #### lista z wskaznikami na listy
-P=0
-for(i in 1:length(graph$node)){
-  P[i] = list(c(node = graph$node[i], connections = graph$connections[i]))
-  i = i + 1
-}
 
 ############################# check
 gMedium = P
